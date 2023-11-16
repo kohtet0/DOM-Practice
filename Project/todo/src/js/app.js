@@ -7,7 +7,11 @@ const listCount = document.querySelector(".list-count");
 const listGroup = document.querySelector(".list-group");
 
 // function
-// const doneCounter = () => {};
+const doneCounter = () => {
+  const checkList = document.querySelectorAll(".check-list:checked").length;
+  console.log(checkList);
+  doneCount.innerText = checkList;
+};
 
 const listCounter = () => {
   const total = document.querySelectorAll(".list").length;
@@ -15,19 +19,21 @@ const listCounter = () => {
 };
 
 const createList = () => {
+  const dyId = "listInput" + Date.now();
   const list = document.createElement("div");
+  const textValue = textInput.value;
   list.classList.add("list");
   list.innerHTML = `
 
         <div
         class="flex justify-between items-center border border-neutral-500 h-14 px-5 mb-3"
       >
-        <div class="flex justify-center items-center gap-2">
-          <input class="check-list w-4 h-4" type="checkbox" name="${textInput.value}" id="list" />
-          <label class="text-list" for="list"> ${textInput.value} </label>
+        <div class="content flex justify-center items-center gap-2">
+          <input class="check-list w-4 h-4" type="checkbox" name="${textValue}" id="${dyId}" />
+          <label class="text-list" for="${dyId}"> ${textValue} </label>
         </div>
         <div class="flex justify-center items-center gap-2">
-          <button type="button">
+          <button type="button" class="edit-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -87,12 +93,35 @@ const createList = () => {
     });
   });
 
-  // for checked text line through
-  const checkList = list.querySelectorAll(".check-list");
-  const textList = list.querySelectorAll(".text-list");
-  checkList[0].addEventListener("click", () => {
-    textList[0].classList.toggle("line-through");
+  // function
+  const lineThrough = () => {
+    const textList = list.querySelector(".text-list");
+    textList.classList.toggle("line-through");
     list.classList.toggle("opacity-50");
+    doneCounter();
+  };
+
+  // for checked text line through
+  const checkList = list.querySelector(".check-list");
+  checkList.addEventListener("change", lineThrough);
+
+  const editBtn = list.querySelector(".edit-btn");
+  const content = list.querySelector(".content");
+  editBtn.addEventListener("click", () => {
+    const textList = list.querySelector(".text-list");
+    const input = document.createElement("input");
+    input.value = textList.innerText;
+    input.className = "outline-0";
+    content.innerHTML = null;
+    content.append(input);
+    input.focus();
+
+    input.addEventListener("blur", () => {
+      content.innerHTML = `
+      <input class="check-list w-4 h-4" type="checkbox" name="${input.value}" id="${dyId}" />
+      <label class="text-list" for="${dyId}"> ${input.value} </label>
+      `;
+    });
   });
 
   return list;

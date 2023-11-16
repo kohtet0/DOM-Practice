@@ -1979,6 +1979,11 @@ video {
   outline-width:0px
 }
 
+.blur{
+  --tw-blur:blur(8px);
+  filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+}
+
 @media (min-width: 640px){
   .sm\:max-w-md{
     max-width:28rem

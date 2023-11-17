@@ -1811,6 +1811,10 @@ video {
   --tw-backdrop-sepia: 
 }
 
+.pointer-events-none{
+  pointer-events:none
+}
+
 .my-5{
   margin-top:1.25rem;
   margin-bottom:1.25rem
@@ -1868,6 +1872,21 @@ video {
   max-width:20rem
 }
 
+.-translate-x-full{
+  --tw-translate-x:-100%;
+  transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.translate-x-full{
+  --tw-translate-x:100%;
+  transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.translate-x-\[150\%\]{
+  --tw-translate-x:150%;
+  transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
 .select-none{
   -webkit-user-select:none;
      -moz-user-select:none;
@@ -1888,6 +1907,10 @@ video {
 
 .gap-2{
   gap:0.5rem
+}
+
+.overflow-hidden{
+  overflow:hidden
 }
 
 .rounded-full{
@@ -1982,6 +2005,27 @@ video {
 .blur{
   --tw-blur:blur(8px);
   filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+}
+
+.duration-75{
+  transition-duration:75ms
+}
+
+.duration-100{
+  transition-duration:100ms
+}
+
+.duration-300{
+  transition-duration:300ms
+}
+
+.group:hover .group-hover\:pointer-events-auto{
+  pointer-events:auto
+}
+
+.group:hover .group-hover\:translate-x-0{
+  --tw-translate-x:0px;
+  transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
 @media (min-width: 640px){

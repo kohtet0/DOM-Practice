@@ -23,7 +23,7 @@ const createList = () => {
   const dyId = "listInput" + Date.now();
   const list = document.createElement("div");
   const textValue = textInput.value;
-  list.classList.add("list");
+  list.classList.add("list", "animate__animated", "animate__slideInLeft");
   list.innerHTML = `
 
         <div
@@ -84,13 +84,37 @@ const createList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        list.remove();
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your list has been deleted.",
-          icon: "success",
+        list.classList.replace(
+          "animate__slideInLeft",
+          "animate__slideOutRight"
+        );
+        list.addEventListener("animationend", () => {
+          list.remove();
         });
       }
+    });
+  });
+
+  // for edit btn
+  const editBtn = list.querySelector(".edit-btn");
+  const content = list.querySelector(".content");
+  editBtn.addEventListener("click", () => {
+    const textList = list.querySelector(".text-list");
+    const input = document.createElement("input");
+    input.value = textList.innerText;
+    input.className = "outline-0";
+    content.innerHTML = "";
+    content.append(input);
+    input.focus();
+
+    input.addEventListener("blur", () => {
+      content.innerHTML = `
+        <input class="check-list w-4 h-4" type="checkbox" name="${input.value}" id="${dyId}" />
+        <label class="text-list" for="${dyId}"> ${input.value} </label>
+        `;
+
+      const checkList = list.querySelector(".check-list");
+      checkList.addEventListener("change", lineThrough);
     });
   });
 
@@ -99,39 +123,14 @@ const createList = () => {
     const textList = list.querySelector(".text-list");
     textList.classList.toggle("line-through");
     list.classList.toggle("opacity-50");
+    editBtn.toggleAttribute("disabled");
+    editBtn.classList.toggle("opacity-50");
     doneCounter();
   };
 
   // for checked text line through
   const checkList = list.querySelector(".check-list");
   checkList.addEventListener("change", lineThrough);
-
-  // for edit btn
-  const editBtn = list.querySelector(".edit-btn");
-  const content = list.querySelector(".content");
-  editBtn.addEventListener("click", () => {
-    const textList = list.querySelector(".text-list");
-
-    console.log();
-
-    if (textList.classList.contains("line-through")) {
-      console.log("u can't edit");
-    } else {
-      const input = document.createElement("input");
-      input.value = textList.innerText;
-      input.className = "outline-0";
-      content.innerHTML = null;
-      content.append(input);
-      input.focus();
-
-      input.addEventListener("blur", () => {
-        content.innerHTML = `
-        <input class="check-list w-4 h-4" type="checkbox" name="${input.value}" id="${dyId}" />
-        <label class="text-list" for="${dyId}"> ${input.value} </label>
-        `;
-      });
-    }
-  });
 
   return list;
 };

@@ -26,10 +26,6 @@
               required
             >
               <option selected>Choose a fruit</option>
-              <option value="US">Apple</option>
-              <option value="CA">Orange</option>
-              <option value="FR">Mango</option>
-              <option value="DE">Banana</option>
             </select>
 
             <!-- this is number input -->
@@ -81,7 +77,18 @@
             </thead>
             <tbody id="tableBody">
               <tr
-                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                class="hidden last:table-row even:bg-white even:dark:bg-gray-900 odd:bg-gray-50 odd:dark:bg-gray-800 border-b dark:border-gray-700"
+              >
+                <td
+                  colspan="5"
+                  class="px-6 py-4 text-center border-neutral-200 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  There is no data! Please add...
+                </td>
+              </tr>
+
+              <tr
+                class="even:bg-white even:dark:bg-gray-900 odd:bg-gray-50 odd:dark:bg-gray-800 border-b dark:border-gray-700"
               >
                 <td class="px-6 py-4 text-center border-r border-neutral-200">
                   Silver
@@ -99,39 +106,20 @@
                 </td>
                 <td class="px-6 py-4 text-end">3000</td>
               </tr>
-
+            </tbody>
+            <tfoot>
               <tr
-                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
-              >
-                <td class="px-6 py-4 text-center border-r border-neutral-200">
-                  Silver
-                </td>
-                <td
-                  class="px-6 py-4 text-center border-r border-neutral-200 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Apple MacBook Pro 17"
-                </td>
-                <td class="px-6 py-4 border-r border-neutral-200 text-end">
-                  1000
-                </td>
-                <td class="px-6 py-4 border-r border-neutral-200 text-end">
-                  3
-                </td>
-                <td class="px-6 py-4 text-end">3000</td>
-              </tr>
-
-              <tr
-                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                class="even:bg-white even:dark:bg-gray-900 odd:bg-gray-50 odd:dark:bg-gray-800 border-b dark:border-gray-700"
               >
                 <td
                   colspan="4"
-                  class="px-6 py-4 text-center text-base font-bold uppercase border-r border-neutral-200"
+                  class="px-6 py-3 text-center text-base font-bold uppercase border-r border-neutral-200"
                 >
                   Total
                 </td>
-                <td class="px-6 py-4 text-base font-bold text-end">3000</td>
+                <td class="px-6 py-3 text-base font-bold text-end">0</td>
               </tr>
-            </tbody>
+            </tfoot>
           </table>
         </div>
       </div>

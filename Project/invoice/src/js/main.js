@@ -1,6 +1,6 @@
 // selector
 const app = document.querySelector("#app");
-const mainForm = app.querySelector("#mainForm");
+const addRecordForm = app.querySelector("#addRecordForm");
 const formSelect = app.querySelector("#formSelect");
 const formInput = app.querySelector("#formInput");
 const addBtn = app.querySelector("#addBtn");

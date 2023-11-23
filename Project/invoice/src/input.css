@@ -3,3 +3,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    counter-reset: recordIncrement;
+}
+
+.td-counter::before {
+    counter-increment: recordIncrement;
+    content: counter(recordIncrement);
+}

@@ -1258,6 +1258,10 @@ input:checked + .toggle-bg{
   width: 1rem;
 }
 
+.w-6{
+  width: 1.5rem;
+}
+
 .w-64{
   width: 16rem;
 }
@@ -1384,6 +1388,10 @@ input:checked + .toggle-bg{
   gap: 0.75rem;
 }
 
+.gap-0{
+  gap: 0px;
+}
+
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
@@ -1404,10 +1412,6 @@ input:checked + .toggle-bg{
 
 .rounded-lg{
   border-radius: 0.5rem;
-}
-
-.rounded-3xl{
-  border-radius: 1.5rem;
 }
 
 .rounded-e-lg{
@@ -1990,8 +1994,12 @@ body {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-@media (min-width: 640px){
-  .sm\:rounded-lg{
-    border-radius: 0.5rem;
+@media print{
+  .print\:block{
+    display: block;
+  }
+
+  .print\:hidden{
+    display: none;
   }
 }

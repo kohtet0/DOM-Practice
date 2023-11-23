@@ -16,7 +16,7 @@
         </div>
 
         <!-- this is form -->
-        <form action="" id="addRecordForm">
+        <form action="" id="addRecordForm" class="print:hidden">
           <div class="grid grid-cols-5 gap-3">
             <!-- this is select box -->
             <select
@@ -52,7 +52,7 @@
         </form>
 
         <!-- this is table -->
-        <div class="relative shadow-md overflow-hidden rounded-lg mt-10">
+        <div class="relative shadow-md rounded-lg mt-10">
           <table
             class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
           >
@@ -63,7 +63,7 @@
                 <th class="px-6 py-4 text-center font-bold text-base border-r">
                   id
                 </th>
-                <th class="px-6 py-4 text-center font-bold text-base border-r">
+                <th class="px-6 py-4 text-center font-bold text-base border-r whitespace-nowrap">
                   Product name
                 </th>
                 <th class="px-6 py-4 text-center font-bold text-base border-r">
@@ -122,6 +122,11 @@
             </tfoot>
           </table>
         </div>
+
+        <!-- this is thank you state -->
+        <div class="text-center mt-10 font-bold text-xl hidden print:block">
+          <p>ဝယ်ယူအားပေးမှုကို အထူးပင်ကျေးဇူးတင်ရှိပါသည်။</p>
+        </div>
       </div>
 
       <!-- this is footer -->
@@ -138,6 +143,7 @@
             Manage Inventory
           </button>
           <button
+          id="printBtn"
             type="button"
             class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700"
           >

@@ -59,9 +59,10 @@ const calculateTotal = () => {
 };
 
 // this code for table row
-const createRow = (name, price, quantity) => {
+const createRow = (id, name, price, quantity) => {
   const total = price * quantity;
   const tr = document.createElement("tr");
+  tr.setAttribute("product-id", id);
   tr.className =
     "new group even:bg-white even:dark:bg-gray-900 odd:bg-gray-50 odd:dark:bg-gray-800 border-b dark:border-gray-700";
 
@@ -79,13 +80,13 @@ const createRow = (name, price, quantity) => {
       </td>
       <td class="px-6 py-3 border-r border-neutral-200">
         <div class="flex justify-end items-center gap-3">
-          <button type="button" class="decrementBtn bg-neutral-600 rounded-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-4 h-4">
+          <button type="button" class="decrementBtn bg-neutral-600 rounded-lg opacity-0 group-hover:opacity-100">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-4 h-4 pointer-events-none">
             <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
             </svg>      
           </button>
-          <div class="rowQ">${quantity}</div>
-          <button type="button" class="incrementBtn bg-neutral-600 rounded-lg">
+          <div class="currentQuantity">${quantity}</div>
+          <button type="button" class="incrementBtn bg-neutral-600 rounded-lg opacity-0 group-hover:opacity-100">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-4 h-4 pointer-events-none">
             <path fill-rule="evenodd" d="M12 5.25a.75.75 0 01.75.75v5.25H18a.75.75 0 010 1.5h-5.25V18a.75.75 0 01-1.5 0v-5.25H6a.75.75 0 010-1.5h5.25V6a.75.75 0 01.75-.75z" clip-rule="evenodd" />
             </svg>
@@ -107,24 +108,6 @@ const createRow = (name, price, quantity) => {
 
   tableBody.append(tr);
 
-  // const decrementBtn = app.querySelector(".decrementBtn");
-  // const rowQ = app.querySelector(".rowQ");
-  // const incrementBtn = app.querySelectorAll(".incrementBtn");
-  // const rowTotal = app.querySelector(".rowTotal")
-
-  // const decrementBtnHandler = () => {
-  //   console.log("u click")
-  // }
-
-  // const incrementBtnHandler = () => {
-  //   let incrTotal = parseFloat(rowQ.innerText) + 1;
-  //   rowQ.innerText = incrTotal;
-  //   rowTotal.innerText = total * incrTotal;
-  // };
-
-  // decrementBtn.addEventListener("click", decrementBtnHandler);
-  // incrementBtn[0].addEventListener("click", incrementBtnHandler);
-
   return tr;
 };
 
@@ -136,6 +119,7 @@ productOption(products);
 // handler
 // =======
 
+// add record form handle
 const addRecordFormHandler = (event) => {
   event.preventDefault();
 
@@ -144,33 +128,96 @@ const addRecordFormHandler = (event) => {
       (product) => product.id == formSelect.value
     );
 
-    createRow(
-      currentProduct.name,
-      currentProduct.price,
-      formInput.valueAsNumber
-    );
+    const isExist = app.querySelector(`[product-id="${currentProduct.id}"]`);
+
+    if (isExist) {
+      const existRow = isExist;
+      const currentRowPrice = existRow.querySelector(".currentPrice");
+      const currentRowQuantity = existRow.querySelector(".currentQuantity");
+      const rowTotal = existRow.querySelector(".rowTotal");
+
+      currentRowQuantity.innerText =
+        parseFloat(currentRowQuantity.innerText) + formInput.valueAsNumber;
+      rowTotal.innerText =
+        currentRowPrice.innerText * currentRowQuantity.innerText;
+    } else {
+      createRow(
+        currentProduct.id,
+        currentProduct.name,
+        currentProduct.price,
+        formInput.valueAsNumber
+      );
+    }
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: "Signed in successfully"
+    });
   }
   addRecordForm.reset();
 };
 
+const decrementBtnHandler = (event) => {
+  if (event.target.classList.contains("decrementBtn")) {
+    const currentRow = event.target.closest("tr");
+    const currentRowPrice = currentRow.querySelector(".currentPrice");
+    const currentRowQuantity = currentRow.querySelector(".currentQuantity");
+    const rowTotal = currentRow.querySelector(".rowTotal");
+
+    if (parseFloat(currentRowQuantity.innerText) > 1) {
+      currentRowQuantity.innerText =
+        parseFloat(currentRowQuantity.innerText) - 1;
+      rowTotal.innerText =
+        currentRowPrice.innerText * currentRowQuantity.innerText;
+    }
+  }
+};
+
 const incrementBtnHandler = (event) => {
   if (event.target.classList.contains("incrementBtn")) {
-    let currentQ = parseInt(event.target.previousElementSibling.innerText);
-    currentQ += 1;
-    event.target.previousElementSibling.innerText = currentQ;
-    const currentPrice = event.target.closest("tr").children[2].innerText;
-    let currentTotal = event.target.closest("tr").lastElementChild;
-    currentTotal.innerText = currentPrice * currentQ;
+    const currentRow = event.target.closest("tr");
+    const currentRowPrice = currentRow.querySelector(".currentPrice");
+    const currentRowQuantity = currentRow.querySelector(".currentQuantity");
+    const rowTotal = currentRow.querySelector(".rowTotal");
+
+    currentRowQuantity.innerText = parseFloat(currentRowQuantity.innerText) + 1;
+    rowTotal.innerText =
+      currentRowPrice.innerText * currentRowQuantity.innerText;
   }
 };
 
+// record del handle
 const delBtnHandler = (event) => {
   if (event.target.classList.contains("delBtn")) {
-    const currentRow = event.target.closest("tr");
-    currentRow.remove();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const currentRow = event.target.closest("tr");
+        currentRow.remove();
+      }
+    });
   }
 };
 
+// print handle
 const printHandler = () => {
   print();
 };
@@ -179,13 +226,15 @@ const printHandler = () => {
 // ========
 
 addRecordForm.addEventListener("submit", addRecordFormHandler);
-tableBody.addEventListener("click", delBtnHandler);
+tableBody.addEventListener("click", decrementBtnHandler);
 tableBody.addEventListener("click", incrementBtnHandler);
+tableBody.addEventListener("click", delBtnHandler);
 printBtn.addEventListener("click", printHandler);
 
 // observer
 // ========
 
+// this observer is calculate total when tbody changing
 const observerCallBack = () => {
   calculateTotal();
 };

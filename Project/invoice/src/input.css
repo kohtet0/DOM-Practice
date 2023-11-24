@@ -1,14 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Work+Sans:wght@300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Work+Sans:wght@300;500;700&display=swap");
+@import url("../node_modules/sweetalert2/dist/sweetalert2.min.css");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    counter-reset: recordIncrement;
+  counter-reset: recordIncrement;
 }
 
 .td-counter::before {
-    counter-increment: recordIncrement;
-    content: counter(recordIncrement);
+  counter-increment: recordIncrement;
+  content: counter(recordIncrement);
+}
+
+.swal2-confirm {
+  @apply py-3 text-gray-800 bg-gray-100 hover:bg-gray-200 font-medium rounded-lg !important;
+}
+
+.swal2-cancel {
+  @apply py-3 text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg !important;
 }

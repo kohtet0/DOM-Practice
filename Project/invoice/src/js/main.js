@@ -44,14 +44,17 @@ const products = [
 
 // this code for option function => item loop and append option
 const productOption = (items) => {
+  // items => products => forEach loop
   items.forEach((item) => {
-    const option = new Option(item.name, item.id);
-    formSelect.append(option);
+    const option = new Option(item.name, item.id); // new Option web api
+    formSelect.append(option); // append to ui
   });
 };
 
 // this code for calculate total
 const calculateTotal = () => {
+
+  /* this code for all row total calculate and spread arr change, reduce => pv + cv */
   allTotal.innerText = [...document.querySelectorAll(".rowTotal")].reduce(
     (pv, cv) => pv + parseFloat(cv.innerText),
     0
@@ -60,9 +63,9 @@ const calculateTotal = () => {
 
 // this code for table row
 const createRow = (id, name, price, quantity) => {
-  const total = price * quantity;
-  const tr = document.createElement("tr");
-  tr.setAttribute("product-id", id);
+  const total = price * quantity; // row total 
+  const tr = document.createElement("tr"); // create tr
+  tr.setAttribute("product-id", id); // tr => attribute
   tr.className =
     "new group even:bg-white even:dark:bg-gray-900 odd:bg-gray-50 odd:dark:bg-gray-800 border-b dark:border-gray-700";
 
@@ -80,13 +83,13 @@ const createRow = (id, name, price, quantity) => {
       </td>
       <td class="px-6 py-3 border-r border-neutral-200">
         <div class="flex justify-end items-center gap-3">
-          <button type="button" class="decrementBtn bg-neutral-600 rounded-lg opacity-0 group-hover:opacity-100">
+          <button type="button" class="active:scale-75 duration-300 decrementBtn bg-neutral-600 rounded-lg opacity-0 group-hover:opacity-100">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-4 h-4 pointer-events-none">
             <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
             </svg>      
           </button>
           <div class="currentQuantity">${quantity}</div>
-          <button type="button" class="incrementBtn bg-neutral-600 rounded-lg opacity-0 group-hover:opacity-100">
+          <button type="button" class="active:scale-75 duration-300 incrementBtn bg-neutral-600 rounded-lg opacity-0 group-hover:opacity-100">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-4 h-4 pointer-events-none">
             <path fill-rule="evenodd" d="M12 5.25a.75.75 0 01.75.75v5.25H18a.75.75 0 010 1.5h-5.25V18a.75.75 0 01-1.5 0v-5.25H6a.75.75 0 010-1.5h5.25V6a.75.75 0 01.75-.75z" clip-rule="evenodd" />
             </svg>
@@ -94,7 +97,7 @@ const createRow = (id, name, price, quantity) => {
         </div>
       </td>
       <td class="px-6 py-3 text-end flex justify-end items-center">
-        <button class="delBtn bg-neutral-600 rounded-lg p-1 absolute hidden pointer-events-none group-hover:pointer-events-auto group-hover:translate-x-9 group-hover:block">
+        <button class="delBtn active:scale-75 duration-300 bg-neutral-600 rounded-lg p-1 absolute hidden pointer-events-none group-hover:pointer-events-auto group-hover:translate-x-9 group-hover:block">
           <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-4 h-4 pointer-events-none">
           <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
           </svg>
@@ -106,7 +109,7 @@ const createRow = (id, name, price, quantity) => {
       
   `;
 
-  tableBody.append(tr);
+  tableBody.append(tr); // tbody => tr append
 
   return tr;
 };
@@ -114,14 +117,14 @@ const createRow = (id, name, price, quantity) => {
 // initial render
 // ==============
 
-productOption(products);
+productOption(products); // productOption => items = products data
 
 // handler
 // =======
 
 // add record form handle
 const addRecordFormHandler = (event) => {
-  event.preventDefault();
+  event.preventDefault(); // page not jump
 
   if (formSelect.value != "Choose a fruit") {
     const currentProduct = products.find(
@@ -153,16 +156,16 @@ const addRecordFormHandler = (event) => {
       toast: true,
       position: "top-end",
       showConfirmButton: false,
-      timer: 2000,
+      timer: 1000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.onmouseenter = Swal.stopTimer;
         toast.onmouseleave = Swal.resumeTimer;
-      }
+      },
     });
     Toast.fire({
       icon: "success",
-      title: "Signed in successfully"
+      title: "Signed in successfully",
     });
   }
   addRecordForm.reset();

@@ -3427,3 +3427,29 @@ body {
     display:none
   }
 }
+
+@media (min-width: 640px){
+  .sm\:px-6{
+    padding-left:1.5rem;
+    padding-right:1.5rem
+  }
+
+  .sm\:py-4{
+    padding-top:1rem;
+    padding-bottom:1rem
+  }
+
+  .sm\:py-3{
+    padding-top:0.75rem;
+    padding-bottom:0.75rem
+  }
+
+  .sm\:text-base{
+    font-size:1rem;
+    line-height:1.5rem
+  }
+
+  .sm\:font-medium{
+    font-weight:500
+  }
+}

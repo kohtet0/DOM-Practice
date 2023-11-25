@@ -8,7 +8,7 @@
   </head>
   <body>
     <main id="app" class="min-h-screen flex flex-col">
-      <div class="container mx-auto px-10">
+      <div class="container mx-auto px-5 sm:px-10">
         <!-- this is nav bar -->
         <div class="py-3 border-b-2 border-neutral-500 mb-10">
           <h1 class="font-bold text-3xl">MMS Solution</h1>
@@ -60,21 +60,21 @@
               class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
             >
               <tr class="border-b-2 border-neutral-500 bg-neutral-300">
-                <th class="px-6 py-4 text-center font-bold text-base border-r">
+                <th class="px-3 sm:px-6 py-2 sm:py-4 text-center font-bold text-xs sm:text-base border-r">
                   id
                 </th>
                 <th
-                  class="px-6 py-4 text-center font-bold text-base border-r whitespace-nowrap"
+                  class="px-3 sm:px-6 py-2 sm:py-4 text-center font-bold text-xs sm:text-base border-r sm:whitespace-nowrap"
                 >
                   Product name
                 </th>
-                <th class="px-6 py-4 text-center font-bold text-base border-r">
+                <th class="px-3 sm:px-6 py-2 sm:py-4 text-center font-bold text-xs sm:text-base border-r">
                   Price
                 </th>
-                <th class="px-6 py-4 text-center font-bold text-base border-r">
+                <th class="px-3 sm:px-6 py-2 sm:py-4 text-center font-bold text-xs sm:text-base border-r">
                   Quantity
                 </th>
-                <th class="px-6 py-4 text-center font-bold text-base">Total</th>
+                <th class="px-3 sm:px-6 py-2 sm:py-4 text-center font-bold text-xs sm:text-base">Total</th>
               </tr>
             </thead>
             <tbody id="tableBody">
@@ -83,7 +83,7 @@
               >
                 <td
                   colspan="5"
-                  class="px-6 py-4 text-center border-neutral-200 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  class="px-3 sm:px-6 py-2 sm:py-4 text-center border-neutral-200 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   There is no data! Please add...
                 </td>
@@ -115,11 +115,11 @@
               >
                 <td
                   colspan="4"
-                  class="px-6 py-3 text-center text-base font-bold uppercase border-r border-neutral-200"
+                  class="px-3 sm:px-6 py-2 sm:py-3 text-center text-xs sm:text-base font-bold uppercase border-r border-neutral-200"
                 >
                   Total
                 </td>
-                <td class="allTotal px-6 py-3 text-base font-bold text-end">
+                <td class="allTotal px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-base font-bold text-end">
                   0
                 </td>
               </tr>
@@ -134,7 +134,7 @@
       </div>
 
       <!-- this is footer -->
-      <footer class="mt-auto mx-auto mb-5 container px-10 flex justify-end">
+      <footer class="mt-auto mx-auto mb-5 container px-5 sm:px-10 flex justify-end">
         <div class="">
           <button
             type="button"

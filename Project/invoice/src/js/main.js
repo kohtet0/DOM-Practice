@@ -5,8 +5,11 @@ const addRecordForm = app.querySelector("#addRecordForm");
 const formSelect = app.querySelector("#formSelect");
 const formInput = app.querySelector("#formInput");
 const tableBody = app.querySelector("#tableBody");
-const allTotal = app.querySelector(".allTotal");
 const printBtn = app.querySelector("#printBtn");
+const allTotal = app.querySelector(".allTotal");
+const productShow = app.querySelector(".productShow");
+const forProductUi = app.querySelector(".forProductUi");
+const newProductForm = app.querySelector(".newProductForm");
 
 // data
 // ====
@@ -51,9 +54,22 @@ const productOption = (items) => {
   });
 };
 
+// this code for store product render function
+const storeProduct = (items) => {
+  items.forEach((item) => {
+    const forProductUiClone = forProductUi.content.cloneNode(true);
+    const productUi = forProductUiClone.querySelector(".productUi");
+    const productUiName = productUi.querySelector(".productUiName");
+    const productUiPrice = productUi.querySelector(".productUiPrice");
+    productUiName.innerText = item.name;
+    productUiPrice.innerText = item.price;
+
+    productShow.append(productUi);
+  });
+};
+
 // this code for calculate total
 const calculateTotal = () => {
-
   /* this code for all row total calculate and spread arr change, reduce => pv + cv */
   allTotal.innerText = [...document.querySelectorAll(".rowTotal")].reduce(
     (pv, cv) => pv + parseFloat(cv.innerText),
@@ -63,7 +79,7 @@ const calculateTotal = () => {
 
 // this code for table row
 const createRow = (id, name, price, quantity) => {
-  const total = price * quantity; // row total 
+  const total = price * quantity; // row total
   const tr = document.createElement("tr"); // create tr
   tr.setAttribute("product-id", id); // tr => attribute
   tr.className =
@@ -118,6 +134,7 @@ const createRow = (id, name, price, quantity) => {
 // ==============
 
 productOption(products); // productOption => items = products data
+storeProduct(products); // product render => items = products data
 
 // handler
 // =======
@@ -152,6 +169,7 @@ const addRecordFormHandler = (event) => {
       );
     }
 
+    // this is toast
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -225,6 +243,43 @@ const printHandler = () => {
   print();
 };
 
+const newProductFormHandler = (event) => {
+  event.preventDefault();
+  const formData = new FormData(newProductForm);
+  const newProduct = formData.get("newProduct");
+  const newPrice = parseFloat(formData.get("price"));
+  let index = products.length + 1;
+  products.push({
+    id: index++,
+    name: newProduct,
+    price: newPrice,
+  });
+
+  formSelect.innerHTML = `<option selected>Choose a fruit</option>`;
+  productOption(products);
+
+  productShow.innerHTML = "";
+  storeProduct(products);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-start",
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+  Toast.fire({
+    icon: "success",
+    title: "Signed in successfully",
+  });
+
+  newProductForm.reset();
+};
+
 // listener
 // ========
 
@@ -233,6 +288,7 @@ tableBody.addEventListener("click", decrementBtnHandler);
 tableBody.addEventListener("click", incrementBtnHandler);
 tableBody.addEventListener("click", delBtnHandler);
 printBtn.addEventListener("click", printHandler);
+newProductForm.addEventListener("submit", newProductFormHandler);
 
 // observer
 // ========

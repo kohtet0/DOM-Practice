@@ -2859,11 +2859,6 @@ input:checked + .toggle-bg{
   padding:1rem
 }
 
-.px-10{
-  padding-left:2.5rem;
-  padding-right:2.5rem
-}
-
 .px-2{
   padding-left:0.5rem;
   padding-right:0.5rem
@@ -2933,11 +2928,6 @@ input:checked + .toggle-bg{
 .text-3xl{
   font-size:1.875rem;
   line-height:2.25rem
-}
-
-.text-base{
-  font-size:1rem;
-  line-height:1.5rem
 }
 
 .text-lg{
@@ -3217,12 +3207,6 @@ body {
   box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
 }
 
-.focus\:ring-0:focus{
-  --tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
-}
-
 .focus\:ring-blue-300:focus{
   --tw-ring-opacity:1;
   --tw-ring-color:rgb(164 202 254 / var(--tw-ring-opacity))
@@ -3236,11 +3220,6 @@ body {
 .focus\:ring-gray-200:focus{
   --tw-ring-opacity:1;
   --tw-ring-color:rgb(229 231 235 / var(--tw-ring-opacity))
-}
-
-.focus\:ring-gray-300:focus{
-  --tw-ring-opacity:1;
-  --tw-ring-color:rgb(209 213 219 / var(--tw-ring-opacity))
 }
 
 .active\:scale-75:active{
@@ -3413,11 +3392,6 @@ body {
   --tw-ring-color:rgb(63 131 248 / var(--tw-ring-opacity))
 }
 
-:is(.dark .dark\:focus\:ring-gray-700:focus){
-  --tw-ring-opacity:1;
-  --tw-ring-color:rgb(55 65 81 / var(--tw-ring-opacity))
-}
-
 @media print{
   .print\:block{
     display:block
@@ -3429,14 +3403,18 @@ body {
 }
 
 @media (min-width: 640px){
+  .sm\:whitespace-nowrap{
+    white-space:nowrap
+  }
+
+  .sm\:px-10{
+    padding-left:2.5rem;
+    padding-right:2.5rem
+  }
+
   .sm\:px-6{
     padding-left:1.5rem;
     padding-right:1.5rem
-  }
-
-  .sm\:py-4{
-    padding-top:1rem;
-    padding-bottom:1rem
   }
 
   .sm\:py-3{
@@ -3444,12 +3422,13 @@ body {
     padding-bottom:0.75rem
   }
 
+  .sm\:py-4{
+    padding-top:1rem;
+    padding-bottom:1rem
+  }
+
   .sm\:text-base{
     font-size:1rem;
     line-height:1.5rem
-  }
-
-  .sm\:font-medium{
-    font-weight:500
   }
 }

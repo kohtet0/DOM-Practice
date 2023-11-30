@@ -1,13 +1,13 @@
-import initialRender from "./core/initialRender";
-import listener from "./core/listener";
-import observer from "./core/observer";
+import initialRender from "./core/initialRenders";
+import listener from "./core/listeners";
+import observer from "./core/observers";
 
 class Invoice {
   init() {
-    console.log("Invoice App is start...");
-    observer;
-    initialRender;
-    listener;
+    console.log("Invoice App Start...!");
+    observer();
+    initialRender();
+    listener();
   }
 }
 

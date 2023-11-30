@@ -1,0 +1,5 @@
+export const app = document.querySelector("#app")
+export const addRecordForm = app.querySelector("#addRecordForm")
+export const formSelect = app.querySelector("#formSelect")
+export const tableBody = app.querySelector("#tableBody")
+export const allRowTotal = app.querySelector(".allRowTotal")

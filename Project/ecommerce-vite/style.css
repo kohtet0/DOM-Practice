@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&family=Lora:wght@500;600;700&family=Noto+Sans+Myanmar:wght@400;500;600&family=Noto+Serif+Myanmar:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active {
+  @apply border border-neutral-600 text-neutral-50 bg-neutral-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 !important;
+}

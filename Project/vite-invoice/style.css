@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Work+Sans:wght@300;500;700&display=swap");
+
+
+@import url("./node_modules/sweetalert2/dist/sweetalert2.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    counter-reset: increment;
+}
+
+.td-counter::before {
+    counter-increment: increment;
+    content: counter(increment);
+}

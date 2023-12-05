@@ -1,8 +1,8 @@
-import { products } from "../core/data";
 import { productInCartGroup, productInCartTemplate } from "../core/selectors";
 
 export const cartProductUi = ({ id, image, title, price }) => {
   const cartProduct = productInCartTemplate.content.cloneNode(true);
+  const cartProductId = cartProduct.querySelector(".product-in-cart")
   cartProduct
     .querySelector(".product-in-cart")
     .setAttribute("cartProduct-id", id);

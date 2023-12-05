@@ -1,11 +1,11 @@
 import { products } from "../core/data";
 import {
-  app,
   categoryListGroup,
   categoryUiTemplate,
   productGroup,
+  productInCartGroup,
 } from "../core/selectors";
-import { productRender, productUi } from "./product";
+import { productUi } from "./product";
 
 const categoryUi = (text) => {
   const category = categoryUiTemplate.content.cloneNode(true);
@@ -33,7 +33,19 @@ export const categoryHandler = (event) => {
         event.target.innerText === "All" ||
         product.category === event.target.innerText
       ) {
+        const cartProduct =
+          productInCartGroup.querySelectorAll(".product-in-cart");
+        cartProduct.forEach((cp) => {
+          const cartProductId = cp.getAttribute("cartProduct-id");
+          if (cartProductId == product.id) {
+            // productGroup.append(productUi(product));
+            console.log(product)
+            const disabled = productGroup.querySelectorAll(".product-add-btn");
+          }
+        });
         productGroup.append(productUi(product));
+
+        // product.id ==
       }
     });
   }

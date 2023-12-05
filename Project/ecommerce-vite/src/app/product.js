@@ -1,7 +1,9 @@
 import { products } from "../core/data";
 import {
   app,
+  bagBtn,
   productGroup,
+  productInCartLength,
   productUiTemplate,
   starFillTemplate,
   starOutlineTemplate,
@@ -59,7 +61,6 @@ export const productHandler = (event) => {
     const currentBtn = event.target;
     currentBtn.toggleAttribute("disabled", true);
     currentBtn.innerText = "Cart Added...";
-    const productInCartLength = app.querySelectorAll(".product-in-cart-length");
 
     products.filter((product) => {
       if (product.id == currentProductId) {
@@ -69,6 +70,45 @@ export const productHandler = (event) => {
             (el.innerText = app.querySelectorAll(".product-in-cart").length)
         );
       }
+    });
+
+    const currentProductImg = currentProduct.querySelector(".product-img");
+    const bagPosition = bagBtn.getBoundingClientRect();
+    const imgPosition = currentProductImg.getBoundingClientRect();
+
+    const img = new Image();
+    img.src = currentProductImg.src;
+    img.classList.add("fixed", "h-32", "cloneImg", "z-50");
+    img.style.top = imgPosition.top + "px";
+    img.style.left = imgPosition.left + "px";
+
+    const keyFrame = [
+      {
+        top: imgPosition.top + "px",
+        left: imgPosition.left + "px",
+      },
+      {
+        top: bagPosition.top + "px",
+        left: bagPosition.left + "px",
+        height: 10 + "px",
+        rotate: "3turn",
+      },
+    ];
+
+    const option = {
+      duration: 1000,
+      iterations: 1,
+    };
+
+    app.append(img);
+
+    const imgAnimation = img.animate(keyFrame, option);
+    imgAnimation.addEventListener("finish", () => {
+      document.querySelector(".cloneImg").remove();
+      bagBtn.classList.add("animate__animated", "animate__rubberBand");
+      bagBtn.addEventListener("animationend", () => {
+        bagBtn.classList.remove("animate__rubberBand");
+      });
     });
   }
 };

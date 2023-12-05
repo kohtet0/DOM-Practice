@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -52,7 +52,7 @@
               <!-- shopping bag icon -->
               <button
                 type="button"
-                class="group relative border border-neutral-600 bg-neutral-600 h-10 w-10 flex justify-center text-neutral-50 items-center rounded-lg hover:bg-neutral-50 hover:text-neutral-600"
+                class="bagBtn group relative border border-neutral-600 bg-neutral-600 h-10 w-10 flex justify-center text-neutral-50 items-center rounded-lg hover:bg-neutral-50 hover:text-neutral-600"
                 data-drawer-target="drawer-right-example"
                 data-drawer-show="drawer-right-example"
                 data-drawer-placement="right"
@@ -91,8 +91,11 @@
         </header>
       </div>
 
+      <!-- spacer -->
+      <div class="h-32 sm:h-28" id="spacer"></div>
+
       <!-- for body -->
-      <div class="mt-52 sm:mt-32 mb-10" id="forScroll">
+      <div class="mb-10" id="forScroll">
         <!-- for product categories -->
         <section class="container mx-auto mt-4 px-10">
           <h3 class="font-heading font-medium text-lg mb-3">
@@ -125,26 +128,26 @@
                 >MMS IT</a
               >
             </div>
-            <button
+
+            <a
+              href="#spacer"
               class="h-10 w-10 border border-neutral-50 flex justify-center items-center rounded-lg"
             >
-              <a href="#forScroll" class="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5"
-                  />
-                </svg>
-              </a>
-            </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 pointer-events-none"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5"
+                />
+              </svg>
+            </a>
           </div>
         </section>
       </footer>
@@ -367,7 +370,7 @@
                   </svg>
                 </button>
 
-                <span class="product-in-cart-quantity">5</span>
+                <span class="product-in-cart-quantity">1</span>
 
                 <!-- for increase icon -->
                 <button

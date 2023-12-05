@@ -1,6 +1,8 @@
 export const app = document.querySelector("#app");
 export const searchInput = app.querySelector("#searchInput");
 export const searchBtn = app.querySelector(".searchBtn");
+export const bagBtn = app.querySelector(".bagBtn")
+export const productInCartLength = app.querySelectorAll(".product-in-cart-length");
 export const categoryListGroup = app.querySelector(".category-list-group");
 export const categoryUiTemplate = app.querySelector("#categoryUiTemplate");
 export const productGroup = app.querySelector(".productGroup");

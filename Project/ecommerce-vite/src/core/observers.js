@@ -9,7 +9,7 @@ const observer = () => {
       const currentProductPrice = el.querySelector(".product-in-cart-price");
       i += parseFloat(currentProductPrice.innerText);
     });
-    allTotal.innerText = i;
+    allTotal.innerText = i.toFixed(2);
   };
 
   const observerOptions = {

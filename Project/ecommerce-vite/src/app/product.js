@@ -1,3 +1,4 @@
+import WOW from "wow.js/src/WOW";
 import { products } from "../core/data";
 import {
   app,
@@ -112,3 +113,12 @@ export const productHandler = (event) => {
     });
   }
 };
+
+export const wow = new WOW({
+  boxClass: "wow", // animated element css class (default is wow)
+  animateClass: "animate__animated",
+  offset: 50,
+  mobile: true, // default
+  live: true, // default
+  iterations: 10,
+});
